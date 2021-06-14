@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreditoBancario.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +15,10 @@ namespace CreditoBancario.Interface
         float PorcentajePrima { get; }
         IPrestamo Prestamo { get; set; }
 
-        public void CalcularCuotas()
-        {
+        void CalcularCuotas();
 
-        }
+        decimal CalcularIngresoMinimo();
 
-        public decimal CalcularIngresoMinimo()
-        {
-            return 0;
-        }
-
-        public decimal CalcularOtrosGastos
-        {
-            return 0;
-        }
+        decimal CalcularOtrosGastos();
     }
 }
