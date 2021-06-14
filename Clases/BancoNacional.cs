@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreditoBancario.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreditoBancario.Clases
 {
-    class BancoNacional 
+    class BancoNacional : IBanco 
     {
     }
 }

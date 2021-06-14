@@ -8,5 +8,16 @@ namespace CreditoBancario.Facades
 {
     class CotizacionFacade
     {
+        IBanco banco;
+
+        public void GuardarXml(string ruta)
+        {
+
+        }
+
+        public void InicializarCredito(IBanco banco)
+        {
+
+        }
     }
 }
