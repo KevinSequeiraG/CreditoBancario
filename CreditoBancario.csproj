@@ -50,6 +50,9 @@
     <Compile Include="Clases\BancoNacional.cs" />
     <Compile Include="Clases\BancoPopular.cs" />
     <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\CompraLote.cs" />
+    <Compile Include="Clases\CompraVehiculo.cs" />
+    <Compile Include="Clases\CompraVivienda.cs" />
     <Compile Include="Clases\Cuota.cs" />
     <Compile Include="Clases\TBP.cs" />
     <Compile Include="Enum\Moneda.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Interface\IPrestamo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TBP.cs" />
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,6 +83,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Json\TBS.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
