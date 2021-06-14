@@ -46,11 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Avaluo.cs" />
     <Compile Include="Clases\BancoCostaRica.cs" />
     <Compile Include="Clases\BancoNacional.cs" />
     <Compile Include="Clases\BancoPopular.cs" />
     <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\CompraLote.cs" />
+    <Compile Include="Clases\CompraVehiculo.cs" />
+    <Compile Include="Clases\CompraVivienda.cs" />
     <Compile Include="Clases\Cuota.cs" />
+    <Compile Include="Clases\Gasto.cs" />
+    <Compile Include="Clases\SeguroDesempleo.cs" />
+    <Compile Include="Clases\SeguroVida.cs" />
     <Compile Include="Clases\TBP.cs" />
     <Compile Include="Enum\Moneda.cs" />
     <Compile Include="Enum\TipoPrestamo.cs" />

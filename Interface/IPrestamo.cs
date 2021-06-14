@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CreditoBancario.Clases;
+using CreditoBancario.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +16,7 @@ namespace CreditoBancario.Interface
         string Nombre { get; set; }
         int PlazoMeses { get; set; }
 
-        public float ObtenerPorcentajeTasaVariable(Type tipoBanco)
-        {
-            return 0;
-        }
+        float ObtenerPorcentajeTasaVariable(Type tipoBanco);
+        
     }
 }

@@ -7,7 +7,30 @@ using System.Threading.Tasks;
 
 namespace CreditoBancario.Clases
 {
-    class BancoNacional : IBanco 
+    class BancoNacional : IBanco
     {
+        public Cliente Cliente { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Cuota> Cuotas { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string Nombre => throw new NotImplementedException();
+
+        public float PorcentajePrima => throw new NotImplementedException();
+
+        public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public void CalcularCuotas()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal CalcularIngresoMinimo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal CalcularOtrosGastos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
