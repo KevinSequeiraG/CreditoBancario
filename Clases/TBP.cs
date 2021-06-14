@@ -8,5 +8,13 @@ namespace CreditoBancario.Clases
 {
     class TBP
     {
+        string ruta;
+        public DateTime fecha { get; set; }
+        public float Monto { get; set; }
+
+        public float ConsultarMontoActual()
+        {
+            return 0;
+        }
     }
 }
