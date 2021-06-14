@@ -8,5 +8,8 @@ namespace CreditoBancario.Clases
 {
     class Cuota
     {
+        public string descripcion { get; set;}
+        public float interes { get; set;}
+        public decimal monto { get; set;}
     }
 }
