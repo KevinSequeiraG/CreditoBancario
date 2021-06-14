@@ -8,5 +8,8 @@ namespace CreditoBancario.Clases
 {
     class Cliente
     {
+        public string identidicacion { get; set;}
+        public string nombre { get; set;}
+        public string telefono { get; set;}
     }
 }
