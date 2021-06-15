@@ -43,7 +43,7 @@ namespace CreditoBancario.Facades
             root.AppendChild(Banco);
 
             XmlElement Informacion = doc.CreateElement("Informacion");
-            Informacion.SetAttribute("Tipo", banco.GetType().ToString());
+            Informacion.SetAttribute("Tipo", banco.Prestamo.Nombre);
             Informacion.SetAttribute("Plazo", banco.Prestamo.PlazoMeses.ToString());
             Informacion.SetAttribute("Moneda", banco.Prestamo.Moneda.ToString());
             root.AppendChild(Informacion);
@@ -60,9 +60,9 @@ namespace CreditoBancario.Facades
             ////
 
             XmlElement Cliente = doc.CreateElement("Cliente");
-            Informacion.SetAttribute("Identificacion", banco.Cliente.identidicacion);
-            Informacion.SetAttribute("Nombre", banco.Cliente.nombre);
-            Informacion.SetAttribute("Telefono", banco.Cliente.telefono);
+            Cliente.SetAttribute("Identificacion", banco.Cliente.identidicacion);
+            Cliente.SetAttribute("Nombre", banco.Cliente.nombre);
+            Cliente.SetAttribute("Telefono", banco.Cliente.telefono);
             root.AppendChild(Cliente);
 
             ////Hijos de Cliente
@@ -90,17 +90,25 @@ namespace CreditoBancario.Facades
 
             ////
             XmlElement nodoCuotas = doc.CreateElement("Cuotas");
-            root.AppendChild(nodoCuotas);
 
-            foreach (Cuota cuota in banco.Cuotas)
+            if (banco.Cuotas.Count < 10)
             {
-                XmlElement nodoCuota = doc.CreateElement("Cuota");
-                nodoCuota.SetAttribute("Monto", cuota.monto.ToString());
-                nodoCuota.SetAttribute("Interes", cuota.interes.ToString());
-                nodoCuota.InnerText = cuota.descripcion;
+                nodoCuotas.InnerText = "No hay cuotas";
             }
+            else
+            {
+                foreach (Cuota cuota in banco.Cuotas)
+                {
+                    XmlElement nodoCuota = doc.CreateElement("Cuota");
+                    nodoCuota.SetAttribute("Monto", cuota.monto.ToString());
+                    nodoCuota.SetAttribute("Interes", cuota.interes.ToString());
+                    nodoCuota.InnerText = cuota.descripcion;
+                    nodoCuotas.AppendChild(nodoCuota);
+                }
+            }
+            
 
-            root.AppendChild(Banco);
+            root.AppendChild(nodoCuotas);
 
             doc.Save(ruta);
         }

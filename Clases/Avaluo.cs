@@ -19,7 +19,7 @@ namespace CreditoBancario.Clases
         {
             get
             {
-                return "Avalúo";
+                return "Gastos de Avalúo";
             }
         }
     }

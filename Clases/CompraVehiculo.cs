@@ -13,7 +13,13 @@ namespace CreditoBancario.Clases
         public List<Gasto> Gastos { get; set; }
         public Moneda Moneda { get; set; }
         public decimal Monto { get; set; }
-        public string Nombre { get; set; }
+        public string Nombre
+        {
+            get
+            {
+                return "Compra de vehiculo";
+            }
+        }
         public int PlazoMeses { get; set; }
         public CompraVehiculo()
         {

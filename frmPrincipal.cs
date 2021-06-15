@@ -39,30 +39,39 @@ namespace CreditoBancario
 
         private void btnCotizar_Click(object sender, EventArgs e)
         {
-                cotizacion = new CotizacionFacade();
+            cotizacion = new CotizacionFacade();
 
-                facBanco = new BancoFactory();
-                facPrestamo = new PrestamoFactory();
-                cliente = new Cliente();
-                cliente.identidicacion = txtIdentificacion.Text;
-                cliente.nombre = txtNombre.Text;
-                cliente.telefono = mtxTelefono.Text;
+            facBanco = new BancoFactory();
+            facPrestamo = new PrestamoFactory();
+            cliente = new Cliente();
+            cliente.identidicacion = txtIdentificacion.Text;
+            cliente.nombre = txtNombre.Text;
+            cliente.telefono = mtxTelefono.Text;
 
-                //Paso a paso
-                TipoPrestamo tipoPrestamo = (TipoPrestamo)cmbPrestamo.SelectedItem;
-                int plazo = (int)nudPlazo.Value;
-                decimal monto = Convert.ToDecimal(mtxMonto.Text);
-                Moneda moneda = (Moneda)lstMoneda.SelectedItem;
-                IPrestamo prestamo = facPrestamo.CrearPrestamo(tipoPrestamo, plazo, monto, moneda, chkSeguroDesempleo.Checked, chkSeguroVida.Checked, chkAvaluo.Checked);
-                IBanco banco = facBanco.CrearBanco(rbtBN.Checked, rbtBCR.Checked, rbtBP.Checked, cliente, prestamo);
-                cotizacion.InicializarCredito(banco);
-                string rutaXml = saveFileDialog.FileName;
-                cotizacion.GuardarXml(rutaXml);
-                string rutaHtml = Application.StartupPath + "\\" + "cotizacion.html";
-                cotizacion.convertToHTML(rutaXml, rutaHtml);
-                webBrowser.Url = new Uri(rutaHtml);
-
+            //Paso a paso
+            TipoPrestamo tipoPrestamo = (TipoPrestamo)cmbPrestamo.SelectedItem;
+            int plazo = (int)nudPlazo.Value;
+            decimal monto = Convert.ToDecimal(mtxMonto.Text);
+            Moneda moneda = (Moneda)lstMoneda.SelectedItem;
+            IPrestamo prestamo = facPrestamo.CrearPrestamo(tipoPrestamo, plazo, monto, moneda, chkSeguroDesempleo.Checked, chkSeguroVida.Checked, chkAvaluo.Checked);
+            IBanco banco = facBanco.CrearBanco(rbtBN.Checked, rbtBCR.Checked, rbtBP.Checked, cliente, prestamo);
+            cotizacion.InicializarCredito(banco);
+            banco.CalcularCuotas();
+            if (banco != null)
+            {
+                DialogResult resultado = saveFileDialog.ShowDialog();
+                if (resultado == System.Windows.Forms.DialogResult.OK)
+                {
+                    string rutaXml = saveFileDialog.FileName;
+                    cotizacion.GuardarXml(rutaXml);
+                    string rutaHtml = Application.StartupPath + "\\" + "cotizacion.html";
+                    cotizacion.convertToHTML(rutaXml, rutaHtml);
+                    webBrowser.Url = new Uri(rutaHtml);
+                }
+            }
             
+
+
         }
 
     }

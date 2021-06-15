@@ -52,15 +52,13 @@ namespace CreditoBancario.Clases
             porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
             resul = montoFinanciar * porcentajeTotal;
 
-            for (int i = 0; i < Prestamo.PlazoMeses; i++)
+            for (int i = 1; i <= Prestamo.PlazoMeses; i++)
             {
-                Cuotas.Add(new Cuota
-                {
-                    monto = Convert.ToDecimal(resul / 12),
-                    interes = Convert.ToSingle(porcentajeTotal),
-                    descripcion = "Cuota " + i + " de " + Prestamo.PlazoMeses
-                }
-            );
+                Cuota cuota = new Cuota();
+                cuota.descripcion = "Cuota " + i + " de " + Prestamo.PlazoMeses;
+                cuota.interes = Convert.ToSingle(porcentajeTotal);
+                cuota.monto = Convert.ToDecimal(resul / 12);
+                Cuotas.Add(cuota);
             }
         }
 

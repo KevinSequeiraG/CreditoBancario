@@ -13,7 +13,7 @@ namespace CreditoBancario.Interface
         List<Gasto> Gastos { get; set; }
         Moneda Moneda { get; set; }
         decimal Monto { get; set; }
-        string Nombre { get; set; }
+        string Nombre { get; }
         int PlazoMeses { get; set; }
 
         float ObtenerPorcentajeTasaVariable(Type tipoBanco);
