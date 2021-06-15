@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CreditoBancario.Enum
+namespace CreditoBancario.Enums
 {
-    enum TipoPrestamo
+    enum Moneda
     {
-        Vivienda, Lote, Vehiculo
+        Colones, Dolares
     }
 }

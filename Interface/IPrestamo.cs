@@ -1,5 +1,5 @@
 ﻿using CreditoBancario.Clases;
-using CreditoBancario.Enum;
+using CreditoBancario.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

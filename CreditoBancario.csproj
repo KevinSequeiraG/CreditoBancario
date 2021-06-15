@@ -59,8 +59,8 @@
     <Compile Include="Clases\SeguroDesempleo.cs" />
     <Compile Include="Clases\SeguroVida.cs" />
     <Compile Include="Clases\TBP.cs" />
-    <Compile Include="Enum\Moneda.cs" />
-    <Compile Include="Enum\TipoPrestamo.cs" />
+    <Compile Include="Enums\Moneda.cs" />
+    <Compile Include="Enums\TipoPrestamo.cs" />
     <Compile Include="Facades\CotizacionFacade.cs" />
     <Compile Include="Factorys\BancoFactory.cs" />
     <Compile Include="Factorys\PrestamoFactory.cs" />

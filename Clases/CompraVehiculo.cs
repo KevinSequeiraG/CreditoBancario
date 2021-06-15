@@ -1,4 +1,4 @@
-﻿using CreditoBancario.Enum;
+﻿using CreditoBancario.Enums;
 using CreditoBancario.Interface;
 using System;
 using System.Collections.Generic;

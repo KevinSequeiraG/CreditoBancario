@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreditoBancario.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,9 @@ namespace CreditoBancario
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            
+            lstMoneda.Items.AddRange(typeof(Moneda).GetEnumNames());
+
+            cmbPrestamo.DataSource = Enum.GetValues(typeof(TipoPrestamo));
 
         }
 

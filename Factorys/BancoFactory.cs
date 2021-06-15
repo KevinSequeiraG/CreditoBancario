@@ -12,7 +12,7 @@ namespace CreditoBancario.Factorys
     {
         public IBanco CrearBanco(bool bn, bool bcr, bool popular, Cliente cliente, IPrestamo prestamo)
         {
-
+            return null;
         }
     }
 }

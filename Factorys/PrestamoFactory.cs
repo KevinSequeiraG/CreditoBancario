@@ -1,4 +1,4 @@
-﻿using CreditoBancario.Enum;
+﻿using CreditoBancario.Enums;
 using CreditoBancario.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace CreditoBancario.Factorys
     {
         public IPrestamo CrearPrestamo(TipoPrestamo tipo, int plazo, decimal monto, Moneda moneda, bool desempleo, bool vida, bool avaluo)
         {
-
+            return null;
         }
     }
 }
