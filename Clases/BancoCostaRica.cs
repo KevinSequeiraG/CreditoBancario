@@ -12,9 +12,21 @@ namespace CreditoBancario.Clases
         public Cliente Cliente { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Cuota> Cuotas { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string Nombre => throw new NotImplementedException();
+        public string Nombre
+        {
+            get
+            {
+                return "Banco Costa Rica";
+            }
+        }
 
-        public float PorcentajePrima => throw new NotImplementedException();
+        public float PorcentajePrima
+        {
+            get
+            {
+                return 0.15f;
+            }
+        }
 
         public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -25,12 +37,18 @@ namespace CreditoBancario.Clases
 
         public decimal CalcularIngresoMinimo()
         {
-            throw new NotImplementedException();
+            double tot = double.Parse(Prestamo.Monto.ToString()) / 0.375;
+            return decimal.Parse(tot.ToString());
         }
 
         public decimal CalcularOtrosGastos()
         {
-            throw new NotImplementedException();
+            decimal tot = 0;
+            foreach (var item in Prestamo.Gastos)
+            {
+                tot += decimal.Parse(item.Monto.ToString());
+            }
+            return tot; 
         }
     }
 }

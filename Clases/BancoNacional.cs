@@ -9,28 +9,71 @@ namespace CreditoBancario.Clases
 {
     class BancoNacional : IBanco
     {
-        public Cliente Cliente { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Cuota> Cuotas { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Cliente Cliente { get; set; }
+        public List<Cuota> Cuotas { get; set; }
 
-        public string Nombre => throw new NotImplementedException();
+        public string Nombre
+        {
+            get
+            {
+                return "Banco Nacional";
+            }
+        }
 
-        public float PorcentajePrima => throw new NotImplementedException();
+        public float PorcentajePrima
+        {
+            get
+            {
+                return 0.20f;
+            }
+        }
 
-        public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IPrestamo Prestamo { get; set; }
 
         public void CalcularCuotas()
         {
-            throw new NotImplementedException();
+            double montoFinanciar = (Convert.ToDouble(Prestamo.Monto) * PorcentajePrima) - Convert.ToDouble(Prestamo.Monto);
+            double porcentajeImpuesto = 0;
+            double porcentajeTotal = 0;
+            double resul = 0;
+            TBP tbp = new TBP();
+            if (Prestamo.Moneda is Enums.Moneda.Colones)
+            {
+                porcentajeImpuesto = 0.0735;
+            }
+            else
+            {
+                porcentajeImpuesto = 0.0435;
+            }
+            porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
+            resul = montoFinanciar * porcentajeTotal;
+
+            for (int i = 0; i < Prestamo.PlazoMeses; i++)
+            {
+                Cuotas.Add(new Cuota
+                {
+                    monto = Convert.ToDecimal(resul / 12),
+                    interes = Convert.ToSingle(porcentajeTotal),
+                    descripcion = "Cuota " + i + " de " + Prestamo.PlazoMeses
+                }
+            );
+            }
         }
 
         public decimal CalcularIngresoMinimo()
         {
-            throw new NotImplementedException();
+            double tot = double.Parse(Prestamo.Monto.ToString()) / 0.40;
+            return decimal.Parse(tot.ToString());
         }
 
         public decimal CalcularOtrosGastos()
         {
-            throw new NotImplementedException();
+            decimal tot = 0;
+            foreach (var item in Prestamo.Gastos)
+            {
+                tot += decimal.Parse(item.Monto.ToString());
+            }
+            return tot;
         }
     }
 }

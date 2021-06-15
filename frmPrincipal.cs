@@ -1,4 +1,7 @@
-﻿using CreditoBancario.Enums;
+﻿using CreditoBancario.Clases;
+using CreditoBancario.Enums;
+using CreditoBancario.Factorys;
+using CreditoBancario.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +31,7 @@ namespace CreditoBancario
 
         private void btnCotizar_Click(object sender, EventArgs e)
         {
-            
+
         }
 
     }
