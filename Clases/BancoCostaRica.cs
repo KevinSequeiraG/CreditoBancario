@@ -14,7 +14,13 @@ namespace CreditoBancario.Clases
 
         public string Nombre => throw new NotImplementedException();
 
-        public float PorcentajePrima => throw new NotImplementedException();
+        public float PorcentajePrima
+        {
+            get
+            {
+                return 0.15f;
+            }
+        }
 
         public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
