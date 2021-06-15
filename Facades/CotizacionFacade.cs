@@ -97,7 +97,7 @@ namespace CreditoBancario.Facades
 
         public void InicializarCredito(IBanco banco)
         {
-
+            this.banco = banco;
         }
     }
 }
