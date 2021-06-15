@@ -9,10 +9,16 @@ namespace CreditoBancario.Clases
 {
     class BancoPopular : IBanco
     {
-        public Cliente Cliente { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Cuota> Cuotas { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Cliente Cliente { get; set; }
+        public List<Cuota> Cuotas { get; set; }
 
-        public string Nombre => throw new NotImplementedException();
+        public string Nombre
+        {
+            get
+            {
+                return "Banco Popular";
+            }
+        }
 
         public float PorcentajePrima
         {
@@ -22,7 +28,7 @@ namespace CreditoBancario.Clases
             }
         }
 
-        public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IPrestamo Prestamo { get; set; }
 
         public void CalcularCuotas()
         {
@@ -31,12 +37,18 @@ namespace CreditoBancario.Clases
 
         public decimal CalcularIngresoMinimo()
         {
-            throw new NotImplementedException();
+            double tot = double.Parse(Prestamo.Monto.ToString()) / 0.35;
+            return decimal.Parse(tot.ToString());
         }
 
         public decimal CalcularOtrosGastos()
         {
-            throw new NotImplementedException();
+            decimal tot = 0;
+            foreach (var item in Prestamo.Gastos)
+            {
+                tot += decimal.Parse(item.Monto.ToString());
+            }
+            return tot;
         }
     }
 }
