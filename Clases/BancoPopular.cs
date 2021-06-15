@@ -30,6 +30,11 @@ namespace CreditoBancario.Clases
 
         public IPrestamo Prestamo { get; set; }
 
+        public BancoPopular()
+        {
+            Cuotas = new List<Cuota>();
+        }
+
         public void CalcularCuotas()
         {
             throw new NotImplementedException();

@@ -10,12 +10,15 @@ namespace CreditoBancario.Clases
 {
     class CompraVivienda : IPrestamo
     {
-        public List<Gasto> Gastos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Moneda Moneda { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public decimal Monto { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Nombre { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int PlazoMeses { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        public List<Gasto> Gastos { get; set; }
+        public Moneda Moneda { get; set; }
+        public decimal Monto { get; set; }
+        public string Nombre { get; set; }
+        public int PlazoMeses { get; set; }
+        public CompraVivienda()
+        {
+            Gastos = new List<Gasto>();
+        }
         public float ObtenerPorcentajeTasaVariable(Type tipoBanco)
         {
             throw new NotImplementedException();

@@ -30,6 +30,11 @@ namespace CreditoBancario.Clases
 
         public IPrestamo Prestamo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public BancoCostaRica()
+        {
+            Cuotas = new List<Cuota>();
+        }
+
         public void CalcularCuotas()
         {
             throw new NotImplementedException();

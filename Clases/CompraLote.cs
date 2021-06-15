@@ -16,6 +16,10 @@ namespace CreditoBancario.Clases
         public string Nombre { get; set; }
         public int PlazoMeses { get; set; }
 
+        public CompraLote()
+        {
+            Gastos = new List<Gasto>();
+        }
         public float ObtenerPorcentajeTasaVariable(Type tipoBanco)
         {
             throw new NotImplementedException();

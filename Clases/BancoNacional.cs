@@ -30,6 +30,10 @@ namespace CreditoBancario.Clases
 
         public IPrestamo Prestamo { get; set; }
 
+        public BancoNacional()
+        {
+            Cuotas = new List<Cuota>();
+        }
         public void CalcularCuotas()
         {
             double montoFinanciar = (Convert.ToDouble(Prestamo.Monto) * PorcentajePrima) - Convert.ToDouble(Prestamo.Monto);

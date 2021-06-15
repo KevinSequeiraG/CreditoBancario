@@ -6,7 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Xsl;
 
 namespace CreditoBancario.Facades
 {
@@ -22,12 +24,12 @@ namespace CreditoBancario.Facades
             if (File.Exists(ruta) == false)
             {
                 doc.LoadXml("<Prestamo></Prestamo>");
-                XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
+               /* XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
                 doc.AppendChild(dec);
 
                 string rutaXslt = System.Windows.Forms.Application.StartupPath + "\\Xslt\\CreditoBancario.xslt";
                 XmlProcessingInstruction xslt = doc.CreateProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"" + rutaXslt + "\"");
-                doc.AppendChild(xslt);
+                doc.AppendChild(xslt);*/
             }
             else
             {
@@ -77,27 +79,46 @@ namespace CreditoBancario.Facades
             {
                 XmlElement nodoOtrosGastos = doc.CreateElement("OtroGasto");
                 nodoOtrosGastos.SetAttribute("Monto", item.Monto.ToString());
-                if (item is SeguroVida)
-                {
-                    nodoOtrosGastos.InnerText = banco.Prestamo.Gastos.ToString();
-                }
-                else if (item is SeguroDesempleo)
-                {
-
-                }else if(item is Avaluo)
-                {
-
-                }
-                
+                nodoOtrosGastos.InnerText = item.Nombre;
+                Gastos.AppendChild(nodoOtrosGastos);
             }
+
             ////
+            XmlElement nodoTotalGastos = doc.CreateElement("TotalGastos");
+            nodoTotalGastos.InnerText = banco.CalcularOtrosGastos().ToString();
+            root.AppendChild(nodoTotalGastos);
 
+            ////
+            XmlElement nodoCuotas = doc.CreateElement("Cuotas");
+            root.AppendChild(nodoCuotas);
 
+            foreach (Cuota cuota in banco.Cuotas)
+            {
+                XmlElement nodoCuota = doc.CreateElement("Cuota");
+                nodoCuota.SetAttribute("Monto", cuota.monto.ToString());
+                nodoCuota.SetAttribute("Interes", cuota.interes.ToString());
+                nodoCuota.InnerText = cuota.descripcion;
+            }
+
+            root.AppendChild(Banco);
+
+            doc.Save(ruta);
         }
 
         public void InicializarCredito(IBanco banco)
         {
             this.banco = banco;
+        }
+
+        public void convertToHTML(string rutaXML, string rutaHtml)
+        {
+            string rutaXslt = Application.StartupPath + "\\Xslt\\CreditoBancario.xslt";
+            // Transformación del XMl utilizando XSLT
+            XslCompiledTransform myXslTrans = new XslCompiledTransform();
+            // Carga en memoria la lectura xslt
+            myXslTrans.Load(rutaXslt);
+            // Transforma el archivo xml aun archivo HTML
+            myXslTrans.Transform(rutaXML, rutaHtml);
         }
     }
 }
