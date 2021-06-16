@@ -24,7 +24,7 @@ namespace CreditoBancario.Facades
             if (File.Exists(ruta) == false)
             {
                 doc.LoadXml("<Prestamo></Prestamo>");
-               /* XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
+                /*XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
                 doc.AppendChild(dec);
 
                 string rutaXslt = System.Windows.Forms.Application.StartupPath + "\\Xslt\\CreditoBancario.xslt";
@@ -54,8 +54,7 @@ namespace CreditoBancario.Facades
             Informacion.AppendChild(nodoMonto);
 
             XmlElement nodoPrima = doc.CreateElement("Prima");
-            // duda de prima
-            nodoPrima.InnerText = banco.PorcentajePrima.ToString();
+            nodoPrima.InnerText = Math.Round(Convert.ToDouble(banco.Prestamo.Monto) * banco.PorcentajePrima).ToString();
             Informacion.AppendChild(nodoPrima);
             ////
 

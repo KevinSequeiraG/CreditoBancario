@@ -28,7 +28,41 @@ namespace CreditoBancario.Clases
         }
         public float ObtenerPorcentajeTasaVariable(Type tipoBanco)
         {
-            throw new NotImplementedException();
+            float tot = 0f;
+            if (tipoBanco is BancoCostaRica)
+            {
+                if (Moneda is Moneda.Colones)
+                {
+                    tot = 0.0665f;
+                }
+                else
+                {
+                    tot = 0.0365f;
+                }
+            }
+            else if (tipoBanco is BancoNacional)
+            {
+                if (Moneda is Enums.Moneda.Colones)
+                {
+                    tot = 0.0735F;
+                }
+                else
+                {
+                    tot = 0.0435F;
+                }
+            }
+            else if (tipoBanco is BancoPopular)
+            {
+                if (Moneda is Enums.Moneda.Colones)
+                {
+                    tot = 0.0585f;
+                }
+                else
+                {
+                    tot = 0.0285f;
+                }
+            }
+            return tot;
         }
     }
 }

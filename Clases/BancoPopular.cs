@@ -42,16 +42,9 @@ namespace CreditoBancario.Clases
             double porcentajeTotal = 0;
             double resul = 0;
             TBP tbp = new TBP();
-            if (Prestamo.Moneda is Enums.Moneda.Colones)
-            {
-                porcentajeImpuesto = 0.0735;
-            }
-            else
-            {
-                porcentajeImpuesto = 0.0435;
-            }
+            
             porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
-            resul = montoFinanciar * porcentajeTotal;
+            resul = montoFinanciar * porcentajeTotal;            
 
             for (int i = 1; i <= Prestamo.PlazoMeses; i++)
             {

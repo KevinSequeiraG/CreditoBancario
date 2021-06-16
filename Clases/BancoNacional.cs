@@ -36,22 +36,17 @@ namespace CreditoBancario.Clases
         }
         public void CalcularCuotas()
         {
+            TBP tbp = new TBP();
             double montoFinanciar = (Convert.ToDouble(Prestamo.Monto) * PorcentajePrima) - Convert.ToDouble(Prestamo.Monto);
-            double porcentajeImpuesto = 0;
+            float porcentajeImpuesto = Prestamo.ObtenerPorcentajeTasaVariable(this);
             double porcentajeTotal = 0;
             double resul = 0;
-            TBP tbp = new TBP();
-            if (Prestamo.Moneda is Enums.Moneda.Colones)
-            {
-                porcentajeImpuesto = 0.0735;
-            }
-            else
-            {
-                porcentajeImpuesto = 0.0435;
-            }
+
+            
+            
             porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
             resul = montoFinanciar * porcentajeTotal;
-
+            Console.WriteLine("PORCENTAJE TOTAAAAL" + porcentajeTotal);
             for (int i = 1; i <= Prestamo.PlazoMeses; i++)
             {
                 Cuota cuota = new Cuota();
