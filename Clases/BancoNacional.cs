@@ -38,28 +38,30 @@ namespace CreditoBancario.Clases
         {
             TBP tbp = new TBP();
             double montoFinanciar = (Convert.ToDouble(Prestamo.Monto) * PorcentajePrima) - Convert.ToDouble(Prestamo.Monto);
-            float porcentajeImpuesto = Prestamo.ObtenerPorcentajeTasaVariable(this);
+            Type tipobanco = typeof(BancoNacional);
+            float porcentajeImpuesto = Prestamo.ObtenerPorcentajeTasaVariable(tipobanco);
             double porcentajeTotal = 0;
-            double resul = 0;
+            double subTotal = 0;
 
-            
-            
+
             porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
-            resul = montoFinanciar * porcentajeTotal;
-            Console.WriteLine("PORCENTAJE TOTAAAAL" + porcentajeTotal);
+            subTotal = Math.Round((Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * (porcentajeTotal/100));
+
             for (int i = 1; i <= Prestamo.PlazoMeses; i++)
             {
                 Cuota cuota = new Cuota();
                 cuota.descripcion = "Cuota " + i + " de " + Prestamo.PlazoMeses;
                 cuota.interes = Convert.ToSingle(porcentajeTotal);
-                cuota.monto = Convert.ToDecimal(resul / 12);
+                cuota.monto = Math.Round(Convert.ToDecimal(subTotal/12));
                 Cuotas.Add(cuota);
             }
         }
 
         public decimal CalcularIngresoMinimo()
         {
-            double tot = double.Parse(Prestamo.Monto.ToString()) / 0.40;
+            TBP tbp = new TBP(); 
+            Type tipobanco = typeof(BancoNacional);
+            double tot = Math.Round(Convert.ToDecimal((Math.Round((Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * ((Prestamo.ObtenerPorcentajeTasaVariable(tipobanco) + tbp.ConsultarMontoActual()) / 100))) / 12)) / (100 / 0.40);
             return decimal.Parse(tot.ToString());
         }
 

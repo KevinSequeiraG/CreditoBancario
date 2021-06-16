@@ -32,7 +32,7 @@ namespace CreditoBancario.Clases
                         Monto = item.Monto;
                     }*/
 
-                    Monto = item.Monto;
+                    Monto = item.Monto ;
                 }
                 return Monto;
             }

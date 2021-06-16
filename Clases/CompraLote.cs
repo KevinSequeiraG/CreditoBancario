@@ -29,37 +29,37 @@ namespace CreditoBancario.Clases
         public float ObtenerPorcentajeTasaVariable(Type tipoBanco)
         {
             float tot = 0f;
-            if (tipoBanco is BancoCostaRica)
+            if (tipoBanco == typeof(BancoCostaRica))
             {
                 if (Moneda is Moneda.Colones)
                 {
-                    tot = 0.0665f;
+                    tot = 6.65f;
                 }
                 else
                 {
-                    tot = 0.0365f;
+                    tot = 3.65f;
                 }
             }
-            else if (tipoBanco is BancoNacional)
+            else if (tipoBanco == typeof(BancoNacional))
             {
-                if (Moneda is Enums.Moneda.Colones)
+                if (Moneda is Moneda.Colones)
                 {
-                    tot = 0.0735F;
+                    tot = 7.35F;
                 }
                 else
                 {
-                    tot = 0.0435F;
+                    tot = 4.35F;
                 }
             }
-            else if (tipoBanco is BancoPopular)
+            else if (tipoBanco == typeof(BancoPopular))
             {
-                if (Moneda is Enums.Moneda.Colones)
+                if (Moneda is Moneda.Colones)
                 {
-                    tot = 0.0585f;
+                    tot = 5.85f;
                 }
                 else
                 {
-                    tot = 0.0285f;
+                    tot = 2.85f;
                 }
             }
             return tot;
