@@ -37,11 +37,11 @@ namespace CreditoBancario.Facades
 
             //// Hijos de informacion
             XmlElement nodoMonto = doc.CreateElement("Monto");
-            nodoMonto.InnerText = banco.Prestamo.Monto.ToString();
+            nodoMonto.InnerText = banco.Prestamo.Monto.ToString("0.00");
             Informacion.AppendChild(nodoMonto);
 
             XmlElement nodoPrima = doc.CreateElement("Prima");
-            nodoPrima.InnerText = Math.Round(Convert.ToDouble(banco.Prestamo.Monto) * banco.PorcentajePrima).ToString();
+            nodoPrima.InnerText = ((float)banco.Prestamo.Monto * banco.PorcentajePrima).ToString("0.00");
             Informacion.AppendChild(nodoPrima);
             ////
 
@@ -53,7 +53,7 @@ namespace CreditoBancario.Facades
 
             ////Hijos de Cliente
             XmlElement nodoIngresoMinimo = doc.CreateElement("IngresoMinimo");
-            nodoIngresoMinimo.InnerText = banco.CalcularIngresoMinimo().ToString();
+            nodoIngresoMinimo.InnerText = banco.CalcularIngresoMinimo().ToString("0.00");
             Cliente.AppendChild(nodoIngresoMinimo);
             ////
 
@@ -64,35 +64,27 @@ namespace CreditoBancario.Facades
             foreach (Gasto item in banco.Prestamo.Gastos)
             {
                 XmlElement nodoOtrosGastos = doc.CreateElement("OtroGasto");
-                nodoOtrosGastos.SetAttribute("Monto", item.Monto.ToString());
+                nodoOtrosGastos.SetAttribute("Monto", item.Monto.ToString("0.00"));
                 nodoOtrosGastos.InnerText = item.Nombre;
                 Gastos.AppendChild(nodoOtrosGastos);
             }
 
             ////
             XmlElement nodoTotalGastos = doc.CreateElement("TotalGastos");
-            nodoTotalGastos.InnerText = banco.CalcularOtrosGastos().ToString();
+            nodoTotalGastos.InnerText = banco.CalcularOtrosGastos().ToString("0.00");
             root.AppendChild(nodoTotalGastos);
 
             ////
             XmlElement nodoCuotas = doc.CreateElement("Cuotas");
 
-            if (banco.Cuotas.Count < 10)
+            foreach (Cuota cuota in banco.Cuotas)
             {
-                nodoCuotas.InnerText = "No hay cuotas";
+                XmlElement nodoCuota = doc.CreateElement("Cuota");
+                nodoCuota.SetAttribute("Monto", cuota.monto.ToString("0.00"));
+                nodoCuota.SetAttribute("Interes", cuota.interes.ToString("0.00"));
+                nodoCuota.InnerText = cuota.descripcion;
+                nodoCuotas.AppendChild(nodoCuota);
             }
-            else
-            {
-                foreach (Cuota cuota in banco.Cuotas)
-                {
-                    XmlElement nodoCuota = doc.CreateElement("Cuota");
-                    nodoCuota.SetAttribute("Monto", cuota.monto.ToString());
-                    nodoCuota.SetAttribute("Interes", cuota.interes.ToString());
-                    nodoCuota.InnerText = cuota.descripcion;
-                    nodoCuotas.AppendChild(nodoCuota);
-                }
-            }
-
 
             root.AppendChild(nodoCuotas);
 

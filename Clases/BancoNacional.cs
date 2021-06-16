@@ -43,16 +43,16 @@ namespace CreditoBancario.Clases
             double porcentajeTotal = 0;
             double subTotal = 0;
 
-            string porc = (porcentajeImpuesto + tbp.ConsultarMontoActual()).ToString("N1");
+            string porc = (porcentajeImpuesto + tbp.ConsultarMontoActual()).ToString("n1");
             porcentajeTotal = Convert.ToDouble(porc);
-            subTotal = Math.Round((Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * (porcentajeTotal/100));
+            subTotal = Math.Round(Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * (porcentajeTotal/100);
 
             for (int i = 1; i <= Prestamo.PlazoMeses; i++)
             {
                 Cuota cuota = new Cuota();
                 cuota.descripcion = "Cuota " + i + " de " + Prestamo.PlazoMeses;
                 cuota.interes = Convert.ToSingle(porcentajeTotal);
-                cuota.monto = Math.Round(Convert.ToDecimal(subTotal/12));
+                cuota.monto = Convert.ToDecimal(subTotal/12);
                 Cuotas.Add(cuota);
             }
         }

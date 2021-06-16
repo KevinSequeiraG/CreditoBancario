@@ -31,8 +31,11 @@ namespace CreditoBancario.Clases
                     {
                         Monto = item.Monto;
                     }*/
-
-                    Monto = item.Monto ;
+                    if (item.Monto == 6.35f)
+                    {
+                        Monto = item.Monto;
+                    }
+                    
                 }
                 return Monto;
             }
