@@ -18,23 +18,10 @@ namespace CreditoBancario.Facades
 
         public void GuardarXml(string ruta)
         {
-            
+
             XmlDocument doc = new XmlDocument();
 
-            if (File.Exists(ruta) == false)
-            {
-                doc.LoadXml("<Prestamo></Prestamo>");
-                /*XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
-                doc.AppendChild(dec);
-
-                string rutaXslt = System.Windows.Forms.Application.StartupPath + "\\Xslt\\CreditoBancario.xslt";
-                XmlProcessingInstruction xslt = doc.CreateProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"" + rutaXslt + "\"");
-                doc.AppendChild(xslt);*/
-            }
-            else
-            {
-                doc.Load(ruta);
-            }
+            doc.LoadXml("<Prestamo></Prestamo>");
 
             XmlElement root = doc.DocumentElement;
 
@@ -47,7 +34,7 @@ namespace CreditoBancario.Facades
             Informacion.SetAttribute("Plazo", banco.Prestamo.PlazoMeses.ToString());
             Informacion.SetAttribute("Moneda", banco.Prestamo.Moneda.ToString());
             root.AppendChild(Informacion);
-            
+
             //// Hijos de informacion
             XmlElement nodoMonto = doc.CreateElement("Monto");
             nodoMonto.InnerText = banco.Prestamo.Monto.ToString();
@@ -105,7 +92,7 @@ namespace CreditoBancario.Facades
                     nodoCuotas.AppendChild(nodoCuota);
                 }
             }
-            
+
 
             root.AppendChild(nodoCuotas);
 
