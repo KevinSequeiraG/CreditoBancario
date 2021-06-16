@@ -43,6 +43,10 @@ namespace CreditoBancario
             {
                 txtNombre.Focus();
             }
+            if (txtIdentificacion.Text.Equals(""))
+            {
+                txtIdentificacion.Focus();
+            }
             try
             {
             cotizacion = new CotizacionFacade();
@@ -76,10 +80,10 @@ namespace CreditoBancario
                 }
             }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 
