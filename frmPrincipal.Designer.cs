@@ -44,6 +44,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCotizar = new System.Windows.Forms.Button();
             this.gbPrestamo = new System.Windows.Forms.GroupBox();
+            this.lblMeses = new System.Windows.Forms.Label();
+            this.nudPlazo = new System.Windows.Forms.NumericUpDown();
+            this.lblPlazo = new System.Windows.Forms.Label();
+            this.mtxMonto = new System.Windows.Forms.MaskedTextBox();
+            this.lblMonto = new System.Windows.Forms.Label();
             this.lstMoneda = new System.Windows.Forms.ListBox();
             this.cmbPrestamo = new System.Windows.Forms.ComboBox();
             this.lblMoneda = new System.Windows.Forms.Label();
@@ -54,11 +59,6 @@
             this.rbtBCR = new System.Windows.Forms.RadioButton();
             this.rbtBN = new System.Windows.Forms.RadioButton();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.mtxMonto = new System.Windows.Forms.MaskedTextBox();
-            this.lblMonto = new System.Windows.Forms.Label();
-            this.lblMeses = new System.Windows.Forms.Label();
-            this.nudPlazo = new System.Windows.Forms.NumericUpDown();
-            this.lblPlazo = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -67,8 +67,8 @@
             this.gbOtrosGastos.SuspendLayout();
             this.gbCliente.SuspendLayout();
             this.gbPrestamo.SuspendLayout();
-            this.gbBancos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlazo)).BeginInit();
+            this.gbBancos.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerMain
@@ -161,6 +161,7 @@
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Size = new System.Drawing.Size(169, 23);
             this.txtIdentificacion.TabIndex = 14;
+            this.txtIdentificacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentificacion_KeyPress);
             // 
             // lblId
             // 
@@ -179,6 +180,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(169, 23);
             this.txtNombre.TabIndex = 12;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // label9
             // 
@@ -239,6 +241,69 @@
             this.gbPrestamo.TabIndex = 1;
             this.gbPrestamo.TabStop = false;
             this.gbPrestamo.Text = "Préstamo";
+            // 
+            // lblMeses
+            // 
+            this.lblMeses.AutoSize = true;
+            this.lblMeses.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeses.Location = new System.Drawing.Point(176, 136);
+            this.lblMeses.Name = "lblMeses";
+            this.lblMeses.Size = new System.Drawing.Size(45, 16);
+            this.lblMeses.TabIndex = 18;
+            this.lblMeses.Text = "meses";
+            // 
+            // nudPlazo
+            // 
+            this.nudPlazo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPlazo.Location = new System.Drawing.Point(86, 134);
+            this.nudPlazo.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nudPlazo.Minimum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudPlazo.Name = "nudPlazo";
+            this.nudPlazo.Size = new System.Drawing.Size(83, 23);
+            this.nudPlazo.TabIndex = 17;
+            this.nudPlazo.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // lblPlazo
+            // 
+            this.lblPlazo.AutoSize = true;
+            this.lblPlazo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlazo.Location = new System.Drawing.Point(20, 136);
+            this.lblPlazo.Name = "lblPlazo";
+            this.lblPlazo.Size = new System.Drawing.Size(38, 16);
+            this.lblPlazo.TabIndex = 16;
+            this.lblPlazo.Text = "Plazo";
+            // 
+            // mtxMonto
+            // 
+            this.mtxMonto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtxMonto.Location = new System.Drawing.Point(86, 104);
+            this.mtxMonto.Mask = "0000000000";
+            this.mtxMonto.Name = "mtxMonto";
+            this.mtxMonto.Size = new System.Drawing.Size(185, 23);
+            this.mtxMonto.TabIndex = 15;
+            this.mtxMonto.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // lblMonto
+            // 
+            this.lblMonto.AutoSize = true;
+            this.lblMonto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonto.Location = new System.Drawing.Point(20, 107);
+            this.lblMonto.Name = "lblMonto";
+            this.lblMonto.Size = new System.Drawing.Size(43, 16);
+            this.lblMonto.TabIndex = 14;
+            this.lblMonto.Text = "Monto";
             // 
             // lstMoneda
             // 
@@ -348,69 +413,6 @@
             this.webBrowser.Size = new System.Drawing.Size(419, 547);
             this.webBrowser.TabIndex = 0;
             // 
-            // mtxMonto
-            // 
-            this.mtxMonto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtxMonto.Location = new System.Drawing.Point(86, 104);
-            this.mtxMonto.Mask = "0000000000";
-            this.mtxMonto.Name = "mtxMonto";
-            this.mtxMonto.Size = new System.Drawing.Size(185, 23);
-            this.mtxMonto.TabIndex = 15;
-            this.mtxMonto.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // lblMonto
-            // 
-            this.lblMonto.AutoSize = true;
-            this.lblMonto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonto.Location = new System.Drawing.Point(20, 107);
-            this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(43, 16);
-            this.lblMonto.TabIndex = 14;
-            this.lblMonto.Text = "Monto";
-            // 
-            // lblMeses
-            // 
-            this.lblMeses.AutoSize = true;
-            this.lblMeses.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeses.Location = new System.Drawing.Point(176, 136);
-            this.lblMeses.Name = "lblMeses";
-            this.lblMeses.Size = new System.Drawing.Size(45, 16);
-            this.lblMeses.TabIndex = 18;
-            this.lblMeses.Text = "meses";
-            // 
-            // nudPlazo
-            // 
-            this.nudPlazo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPlazo.Location = new System.Drawing.Point(86, 134);
-            this.nudPlazo.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nudPlazo.Minimum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nudPlazo.Name = "nudPlazo";
-            this.nudPlazo.Size = new System.Drawing.Size(83, 23);
-            this.nudPlazo.TabIndex = 17;
-            this.nudPlazo.Value = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            // 
-            // lblPlazo
-            // 
-            this.lblPlazo.AutoSize = true;
-            this.lblPlazo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlazo.Location = new System.Drawing.Point(20, 136);
-            this.lblPlazo.Name = "lblPlazo";
-            this.lblPlazo.Size = new System.Drawing.Size(38, 16);
-            this.lblPlazo.TabIndex = 16;
-            this.lblPlazo.Text = "Plazo";
-            // 
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "Solo XML|*.xml";
@@ -437,9 +439,9 @@
             this.gbCliente.PerformLayout();
             this.gbPrestamo.ResumeLayout(false);
             this.gbPrestamo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPlazo)).EndInit();
             this.gbBancos.ResumeLayout(false);
             this.gbBancos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPlazo)).EndInit();
             this.ResumeLayout(false);
 
         }

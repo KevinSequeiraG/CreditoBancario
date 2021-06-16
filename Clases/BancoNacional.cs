@@ -59,9 +59,10 @@ namespace CreditoBancario.Clases
 
         public decimal CalcularIngresoMinimo()
         {
-            decimal tot = Cuotas[1].monto * (100 / 40);
+            decimal tot = Cuotas[1].monto * (100m / 40m);
 
             return tot;
+            Console.WriteLine("Ingreso Minimo"+tot);
         }
 
         public decimal CalcularOtrosGastos()

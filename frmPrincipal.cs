@@ -39,6 +39,12 @@ namespace CreditoBancario
 
         private void btnCotizar_Click(object sender, EventArgs e)
         {
+            if (txtNombre.Text.Equals(""))
+            {
+                txtNombre.Focus();
+            }
+            try
+            {
             cotizacion = new CotizacionFacade();
 
             facBanco = new BancoFactory();
@@ -69,10 +75,32 @@ namespace CreditoBancario
                     webBrowser.Url = new Uri(rutaHtml);
                 }
             }
-            
+            }
+            catch (Exception)
+            {
 
-
+                throw;
+            }
         }
 
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void txtIdentificacion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
     }
 }
