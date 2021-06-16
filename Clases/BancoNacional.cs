@@ -43,8 +43,8 @@ namespace CreditoBancario.Clases
             double porcentajeTotal = 0;
             double subTotal = 0;
 
-
-            porcentajeTotal = porcentajeImpuesto + tbp.ConsultarMontoActual();
+            string porc = (porcentajeImpuesto + tbp.ConsultarMontoActual()).ToString("N1");
+            porcentajeTotal = Convert.ToDouble(porc);
             subTotal = Math.Round((Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * (porcentajeTotal/100));
 
             for (int i = 1; i <= Prestamo.PlazoMeses; i++)
@@ -59,10 +59,9 @@ namespace CreditoBancario.Clases
 
         public decimal CalcularIngresoMinimo()
         {
-            TBP tbp = new TBP(); 
-            Type tipobanco = typeof(BancoNacional);
-            double tot = Math.Round(Convert.ToDecimal((Math.Round((Convert.ToDouble(Prestamo.Monto) - (Convert.ToDouble(Prestamo.Monto) * Convert.ToDouble(PorcentajePrima))) * ((Prestamo.ObtenerPorcentajeTasaVariable(tipobanco) + tbp.ConsultarMontoActual()) / 100))) / 12)) / (100 / 0.40);
-            return decimal.Parse(tot.ToString());
+            decimal tot = Cuotas[1].monto * (100 / 40);
+
+            return tot;
         }
 
         public decimal CalcularOtrosGastos()
