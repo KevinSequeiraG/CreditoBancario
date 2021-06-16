@@ -39,14 +39,7 @@ namespace CreditoBancario
 
         private void btnCotizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text.Equals(""))
-            {
-                txtNombre.Focus();
-            }
-            if (txtIdentificacion.Text.Equals(""))
-            {
-                txtIdentificacion.Focus();
-            }
+            
             try
             {
                 cotizacion = new CotizacionFacade();
@@ -61,6 +54,19 @@ namespace CreditoBancario
                 if (lstMoneda.SelectedItem == null)
                 {
                     MessageBox.Show("Debe escoger el tipo de moneda");
+                    return;
+                }
+                if (txtNombre.Text.Equals(""))
+                {
+                    MessageBox.Show("Debe ingresar el nombre");
+                    txtNombre.Focus();
+                    return;
+                }
+                if (txtIdentificacion.Text.Equals(""))
+                {
+                    MessageBox.Show("Debe ingresar la identificación");
+                    txtIdentificacion.Focus();
+                    return;
                 }
                 else
                 {
